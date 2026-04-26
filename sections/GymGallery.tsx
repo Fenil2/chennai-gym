@@ -46,7 +46,7 @@ const images = [
 
 export default function GymGallery() {
   return (
-    <section id="gallery" className="bg-[#0E0E0E] px-4 py-24 sm:px-6 sm:py-28">
+    <section id="gallery" className="bg-[#0E0E0E] px-4 py-12 sm:px-6 sm:py-24 lg:py-28">
       <div className="container mx-auto max-w-7xl">
         <AnimatedSection>
           <SectionHeading
@@ -66,7 +66,7 @@ export default function GymGallery() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: index * 0.07, ease: "easeOut" }}
-                className="group relative h-[520px] min-w-[calc(100vw-2rem)] snap-center rounded-2xl overflow-hidden border border-white/8 bg-[#111] transition-all duration-300 hover:border-[#FF2E2E]/30 sm:h-[580px] sm:min-w-[calc(100vw-3rem)]"
+                className="group relative h-[430px] min-w-[calc(100vw-2.5rem)] snap-center overflow-hidden rounded-2xl border border-white/8 bg-[#111] transition-all duration-300 hover:border-[#FF2E2E]/30 sm:h-[540px] sm:min-w-[calc(100vw-3rem)]"
               >
                 <iframe
                   src={img.embedUrl}
@@ -89,7 +89,7 @@ export default function GymGallery() {
           </div>
         </div>
 
-        <div className="hidden md:grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+        <div className="hidden gap-5 md:grid md:grid-cols-2 xl:grid-cols-3">
           {images.map((img, index) => (
             <motion.div
               key={img.embedUrl}
@@ -120,7 +120,7 @@ export default function GymGallery() {
         </div>
 
         <AnimatedSection delay={0.4}>
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 text-center">
+          <div className="mt-5 flex flex-col items-center justify-center gap-3 text-center sm:mt-6">
             <p className="text-xs tracking-wide text-gray-600">
               Updated with real Instagram photo posts from FitElite Chennai
             </p>

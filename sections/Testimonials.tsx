@@ -33,7 +33,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-28 px-6 bg-[#0B0B0B]">
+    <section id="testimonials" className="bg-[#0B0B0B] px-4 py-12 sm:px-6 sm:py-24 lg:py-28">
       <div className="container mx-auto max-w-7xl">
         <AnimatedSection>
           <SectionHeading

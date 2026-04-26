@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0">
         <Image
@@ -26,13 +26,13 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_60%,rgba(255,46,46,0.09)_0%,transparent_70%)]" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FF2E2E]/40 to-transparent" />
 
-      <div className="relative z-10 container mx-auto max-w-5xl px-4 pb-24 pt-24 text-center sm:px-6 sm:pt-28 md:pb-28">
+      <div className="relative z-10 container mx-auto max-w-5xl px-4 pb-12 pt-20 text-center sm:px-6 sm:pb-24 sm:pt-28 md:pb-28">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <span className="mb-7 inline-flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm sm:px-4 sm:text-xs sm:tracking-widest">
+          <span className="mb-6 inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-sm sm:mb-7 sm:px-4 sm:text-xs sm:tracking-widest">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#FF2E2E]" />
             Chennai&apos;s Premier Fitness Hub
           </span>
@@ -46,7 +46,7 @@ export default function Hero() {
             delay: 0.15,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
-          className="mb-6 text-4xl font-black leading-[1.06] tracking-tight sm:text-5xl md:text-7xl lg:text-8xl"
+          className="mb-5 text-[2.4rem] font-black leading-[1.06] tracking-tight sm:mb-6 sm:text-5xl md:text-7xl lg:text-8xl"
         >
           Transform Your Body.{" "}
           <span className="bg-gradient-to-r from-[#FF2E2E] to-[#FF6B35] bg-clip-text text-transparent">
@@ -58,7 +58,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-gray-300 sm:text-lg md:text-xl"
+          className="mx-auto mb-8 max-w-2xl text-sm leading-relaxed text-gray-300 sm:mb-10 sm:text-lg md:text-xl"
         >
           The ultimate fitness destination in Chennai - elite certified trainers,
           cutting-edge equipment, and programs engineered to deliver real results, fast.
@@ -70,10 +70,10 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.45 }}
           className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
         >
-          <Button href="#contact" variant="primary" size="lg" className="w-full sm:w-auto">
+          <Button href="#contact" variant="primary" size="lg">
             Start Your Free Trial
           </Button>
-          <Button href="#why-us" variant="ghost" size="lg" className="w-full sm:w-auto">
+          <Button href="#why-us" variant="ghost" size="lg">
             Explore Programs
           </Button>
         </motion.div>

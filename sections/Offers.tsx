@@ -66,10 +66,10 @@ export default function Offers() {
   return (
     <section
       id="offers"
-      className="relative overflow-hidden bg-[#0E0E0E] px-4 py-24 sm:px-6 sm:py-28"
+      className="relative overflow-hidden bg-[#0E0E0E] px-4 py-12 sm:px-6 sm:py-24 lg:py-28"
     >
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,rgba(255,255,255,0)_100%)]" />
-      <div className="pointer-events-none absolute inset-x-4 bottom-6 top-6 rounded-[1.5rem] border border-white/6 sm:inset-x-6 sm:bottom-8 sm:top-8 sm:rounded-[2rem]" />
+      <div className="pointer-events-none absolute inset-x-4 bottom-4 top-4 rounded-[1.5rem] border border-white/6 sm:inset-x-6 sm:bottom-8 sm:top-8 sm:rounded-[2rem]" />
 
       <div className="container relative z-10 mx-auto max-w-7xl">
         <AnimatedSection>
@@ -81,11 +81,11 @@ export default function Offers() {
           />
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
           {offers.map((offer, index) => (
             <AnimatedSection key={offer.title} delay={index * 0.1}>
               <div
-                className={`relative flex h-full flex-col rounded-2xl border p-8 transition-all duration-300 ${
+                className={`relative flex h-full flex-col rounded-2xl border p-5 transition-all duration-300 sm:p-8 ${
                   offer.highlighted
                     ? "border-[#FF2E2E]/35 bg-[#151515]"
                     : "border-white/10 bg-white/[0.04] hover:border-white/20 hover:bg-white/[0.06]"
@@ -100,21 +100,21 @@ export default function Offers() {
                 )}
 
                 {!offer.highlighted && (
-                  <div className="mb-5">
+                  <div className="mb-4 sm:mb-5">
                     <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
                       {offer.tag}
                     </span>
                   </div>
                 )}
 
-                <div className="mb-8">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#FF2E2E]/20 bg-[#FF2E2E]/10">
+                <div className="mb-7 sm:mb-8">
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-[#FF2E2E]/20 bg-[#FF2E2E]/10 sm:mb-5 sm:h-12 sm:w-12">
                     <offer.icon size={20} className="text-[#FF2E2E]" />
                   </div>
                   <h3 className="mb-2 text-xl font-black sm:text-2xl">
                     {offer.title}
                   </h3>
-                  <p className="mb-5 text-sm leading-relaxed text-gray-400">
+                  <p className="mb-4 text-sm leading-relaxed text-gray-400 sm:mb-5">
                     {offer.description}
                   </p>
                   <div className="flex items-baseline gap-1.5">
@@ -125,7 +125,7 @@ export default function Offers() {
                   </div>
                 </div>
 
-                <ul className="mb-8 flex-1 space-y-3">
+                <ul className="mb-7 flex-1 space-y-3 sm:mb-8">
                   {offer.features.map((feature) => (
                     <li
                       key={feature}
@@ -142,7 +142,7 @@ export default function Offers() {
                 <Button
                   href="#contact"
                   variant={offer.variant}
-                  className={`w-full ${
+                  className={`${
                     offer.variant === "primary" ? "shadow-none hover:shadow-none" : ""
                   }`}
                 >

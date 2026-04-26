@@ -73,13 +73,13 @@ export default function LeadPopup() {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/70 px-4 py-4 backdrop-blur-sm sm:items-center sm:py-6">
       <div
         className="absolute inset-0"
         onClick={closePopup}
         aria-hidden="true"
       />
-      <div className="relative z-10 w-full max-w-lg rounded-[2rem] border border-white/10 bg-[#101010] p-6 text-white shadow-2xl sm:p-8">
+      <div className="relative z-10 my-8 w-full max-w-lg rounded-[1.75rem] border border-white/10 bg-[#101010] p-5 text-white shadow-2xl sm:my-0 sm:rounded-[2rem] sm:p-8">
         <button
           type="button"
           onClick={closePopup}
@@ -91,11 +91,11 @@ export default function LeadPopup() {
 
         {!submitted ? (
           <>
-            <div className="mb-6">
+            <div className="mb-5 sm:mb-6">
               <span className="mb-4 inline-block rounded-full border border-[#FF2E2E]/30 bg-[#FF2E2E]/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#FF2E2E] sm:px-4 sm:text-xs sm:tracking-widest">
                 Start Your Trial
               </span>
-              <h3 className="mb-3 text-3xl font-black leading-tight">
+              <h3 className="mb-3 text-2xl font-black leading-tight sm:text-3xl">
                 Book Your 3 Days Trial
               </h3>
               <p className="text-sm leading-relaxed text-gray-400 sm:text-base">

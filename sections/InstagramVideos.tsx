@@ -66,21 +66,21 @@ function ReelCard({
 
 export default function InstagramVideos() {
   return (
-    <section id="instagram" className="bg-[#0B0B0B] px-4 py-24 sm:px-6 sm:py-28">
+    <section id="instagram" className="bg-[#0B0B0B] px-4 py-12 sm:px-6 sm:py-24 lg:py-28">
       <div className="container mx-auto max-w-7xl">
         <AnimatedSection>
-          <div className="mb-12 flex flex-col gap-6 md:mb-14 md:flex-row md:items-end md:justify-between">
+          <div className="mb-10 flex flex-col gap-5 md:mb-14 md:flex-row md:items-end md:justify-between md:gap-6">
             <div>
-              <span className="mb-5 inline-block rounded-full border border-[#FF2E2E]/30 bg-[#FF2E2E]/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#FF2E2E] sm:px-4 sm:text-xs sm:tracking-widest">
+              <span className="mb-4 inline-block rounded-full border border-[#FF2E2E]/30 bg-[#FF2E2E]/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#FF2E2E] sm:mb-5 sm:px-4 sm:text-xs sm:tracking-widest">
                 @bolt_fitness_garage
               </span>
-              <h2 className="text-3xl font-black leading-[1.08] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+              <h2 className="text-[2rem] font-black leading-[1.08] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
                 Follow Our{" "}
                 <span className="bg-gradient-to-r from-[#FF2E2E] to-[#FF6B35] bg-clip-text text-transparent">
                   Journey
                 </span>
               </h2>
-              <p className="mt-3 max-w-md text-sm text-gray-500 sm:text-base">
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-gray-500 sm:text-base">
                 Real workouts. Real members. Real results - straight from our latest Instagram posts.
               </p>
             </div>
@@ -89,9 +89,9 @@ export default function InstagramVideos() {
               href="https://www.instagram.com/bolt_fitness_garage?igsh=MWRwOTAwbDY3ZGMxbA%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 rounded-full border border-white/12 text-sm font-semibold hover:border-[#ee2a7b]/60 hover:bg-[#ee2a7b]/5 transition-all duration-300 text-gray-400 hover:text-white group shrink-0 self-start md:self-end"
+              className="group inline-flex self-start items-center gap-3 rounded-full border border-white/12 px-5 py-3 text-sm font-semibold text-gray-400 transition-all duration-300 hover:border-[#ee2a7b]/60 hover:bg-[#ee2a7b]/5 hover:text-white md:self-end"
             >
-              <div className="w-6 h-6 rounded-lg flex items-center justify-center bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shrink-0">
+              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]">
                 <Instagram size={13} className="text-white" />
               </div>
               Follow on Instagram
@@ -106,10 +106,7 @@ export default function InstagramVideos() {
         <div className="-mx-4 overflow-x-auto px-4 no-scrollbar snap-x snap-mandatory sm:-mx-6 sm:px-6">
           <div className="flex gap-4">
             {reels.map((reel, index) => (
-              <div
-                key={reel.id}
-                className="min-w-[calc(100vw-2rem)] snap-center sm:min-w-[22rem] lg:min-w-[20rem] xl:min-w-[22rem]"
-              >
+              <div key={reel.id} className="min-w-[82vw] max-w-[22rem] snap-center sm:min-w-[22rem] lg:min-w-[20rem] xl:min-w-[22rem]">
                 <ReelCard reel={reel} index={index} />
               </div>
             ))}
