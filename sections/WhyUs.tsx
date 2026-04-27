@@ -66,7 +66,7 @@ export default function WhyUs() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {features.map((feature, index) => (
             <AnimatedSection key={feature.title} delay={index * 0.08}>
-              <div className="group h-full rounded-2xl border border-white/10 bg-[#121212] p-5 transition-all duration-300 hover:border-[#FF2E2E]/25 hover:bg-[#171717] sm:p-8">
+              <div className="group h-full rounded-2xl border-0 bg-white/[0.05] p-5 transition-all duration-300 hover:bg-white/[0.08] sm:border sm:border-white/10 sm:bg-[#121212] sm:p-8 sm:hover:border-[#FF2E2E]/25 sm:hover:bg-[#171717]">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#FF2E2E]/30 bg-[#FF2E2E]/10 transition-colors duration-300 group-hover:border-[#FF2E2E]/45 group-hover:bg-[#FF2E2E]/18 sm:mb-6 sm:h-14 sm:w-14">
                   <feature.icon size={24} className="text-[#FF2E2E]" />
                 </div>

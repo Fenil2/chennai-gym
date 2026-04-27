@@ -37,7 +37,7 @@ export default function Navbar() {
       <div className="container mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
         <Link href="#home" className="flex items-center group">
-          <div className="relative h-14 w-14 overflow-hidden sm:h-16 sm:w-16">
+          <div className="relative h-16 w-16 overflow-hidden sm:h-20 sm:w-20">
             <Image
               src="/gymlogonew.png"
               alt="FitElite Chennai logo"

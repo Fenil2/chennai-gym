@@ -69,7 +69,7 @@ export default function Offers() {
       className="relative overflow-hidden bg-[#0E0E0E] px-4 py-12 sm:px-6 sm:py-24 lg:py-28"
     >
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,rgba(255,255,255,0)_100%)]" />
-      <div className="pointer-events-none absolute inset-x-4 bottom-4 top-4 rounded-[1.5rem] border border-white/6 sm:inset-x-6 sm:bottom-8 sm:top-8 sm:rounded-[2rem]" />
+      <div className="pointer-events-none absolute hidden sm:block sm:inset-x-6 sm:bottom-8 sm:top-8 sm:rounded-[2rem] border border-white/6" />
 
       <div className="container relative z-10 mx-auto max-w-7xl">
         <AnimatedSection>
@@ -81,14 +81,14 @@ export default function Offers() {
           />
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+        <div className="mt-6 grid grid-cols-1 gap-8 md:mt-8 md:grid-cols-3 md:gap-6">
           {offers.map((offer, index) => (
-            <AnimatedSection key={offer.title} delay={index * 0.1}>
+            <AnimatedSection key={offer.title} delay={index * 0.1} className="h-full">
               <div
-                className={`relative flex h-full flex-col rounded-2xl border p-5 transition-all duration-300 sm:p-8 ${
+                className={`relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 sm:p-8 ${
                   offer.highlighted
-                    ? "border-[#FF2E2E]/35 bg-[#151515]"
-                    : "border-white/10 bg-white/[0.04] hover:border-white/20 hover:bg-white/[0.06]"
+                    ? "border border-[#FF2E2E]/35 bg-[#151515] ring-1 ring-[#FF2E2E]/20"
+                    : "border-0 bg-white/[0.05] hover:bg-white/[0.08] sm:border sm:border-white/10 sm:hover:border-[#FF2E2E]/25"
                 }`}
               >
                 {offer.highlighted && (
@@ -142,7 +142,7 @@ export default function Offers() {
                 <Button
                   href="#contact"
                   variant={offer.variant}
-                  className={`${
+                  className={`w-full sm:w-auto ${
                     offer.variant === "primary" ? "shadow-none hover:shadow-none" : ""
                   }`}
                 >

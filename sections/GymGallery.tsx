@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Camera, ExternalLink, Instagram } from "lucide-react";
+import { Camera, ExternalLink, Instagram, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useCallback } from "react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
@@ -44,7 +44,18 @@ const images = [
   },
 ] as const;
 
+const navBtn =
+  "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 text-white transition-all duration-200 hover:border-[#FF2E2E]/50 hover:bg-[#FF2E2E]/10 hover:text-[#FF2E2E] disabled:cursor-not-allowed disabled:opacity-30";
+
 export default function GymGallery() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const prev = useCallback(() => setActiveIndex((i) => Math.max(0, i - 1)), []);
+  const next = useCallback(
+    () => setActiveIndex((i) => Math.min(images.length - 1, i + 1)),
+    []
+  );
+
   return (
     <section id="gallery" className="bg-[#0E0E0E] px-4 py-12 sm:px-6 sm:py-24 lg:py-28">
       <div className="container mx-auto max-w-7xl">
@@ -57,70 +68,65 @@ export default function GymGallery() {
           />
         </AnimatedSection>
 
-        <div className="-mx-4 overflow-x-auto px-4 no-scrollbar snap-x snap-mandatory md:hidden sm:-mx-6 sm:px-6">
-          <div className="flex gap-4">
-            {images.map((img, index) => (
-              <motion.div
-                key={img.embedUrl}
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: index * 0.07, ease: "easeOut" }}
-                className="group relative h-[430px] min-w-[calc(100vw-2.5rem)] snap-center overflow-hidden rounded-2xl border border-white/8 bg-[#111] transition-all duration-300 hover:border-[#FF2E2E]/30 sm:h-[540px] sm:min-w-[calc(100vw-3rem)]"
-              >
-                <iframe
-                  src={img.embedUrl}
-                  title={img.title}
-                  className="h-full w-full"
-                  scrolling="no"
-                  allowTransparency={true}
-                />
+        {/* Carousel — buttons sit left & right, vertically centered on the card */}
+        <div className="flex items-center gap-3 sm:gap-5">
+          {/* Left button */}
+          <button onClick={prev} disabled={activeIndex === 0} className={navBtn}>
+            <ChevronLeft size={20} />
+          </button>
 
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-4">
-                  <div className="flex items-center gap-2 text-white/90">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FF2E2E]/15 border border-[#FF2E2E]/25">
-                      <Camera size={13} className="text-[#FF2E2E]" />
+          {/* Single card — centered, 1 at a time */}
+          <div className="min-w-0 flex-1 overflow-hidden rounded-2xl border border-white/8">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+            >
+              {images.map((img) => (
+                <div
+                  key={img.embedUrl}
+                  className="relative h-[420px] w-full shrink-0 sm:h-[560px] lg:h-[640px]"
+                >
+                  <iframe
+                    src={img.embedUrl}
+                    title={img.title}
+                    className="h-full w-full"
+                    scrolling="no"
+                    allowTransparency={true}
+                  />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-4">
+                    <div className="flex items-center gap-2 text-white/90">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-full border border-[#FF2E2E]/25 bg-[#FF2E2E]/15">
+                        <Camera size={13} className="text-[#FF2E2E]" />
+                      </div>
+                      <span className="text-xs font-semibold">Instagram gallery</span>
                     </div>
-                    <span className="text-xs font-semibold">Instagram gallery</span>
                   </div>
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          {/* Right button */}
+          <button onClick={next} disabled={activeIndex === images.length - 1} className={navBtn}>
+            <ChevronRight size={20} />
+          </button>
         </div>
 
-        <div className="hidden gap-5 md:grid md:grid-cols-2 xl:grid-cols-3">
-          {images.map((img, index) => (
-            <motion.div
-              key={img.embedUrl}
-              initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: index * 0.07, ease: "easeOut" }}
-              className="group relative h-[580px] md:h-[620px] rounded-2xl overflow-hidden bg-[#111] border border-white/8 hover:border-[#FF2E2E]/30 transition-all duration-300"
-            >
-              <iframe
-                src={img.embedUrl}
-                title={img.title}
-                className="h-full w-full"
-                scrolling="no"
-                allowTransparency={true}
-              />
-
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-4">
-                <div className="flex items-center gap-2 text-white/90">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FF2E2E]/15 border border-[#FF2E2E]/25">
-                    <Camera size={13} className="text-[#FF2E2E]" />
-                  </div>
-                  <span className="text-xs font-semibold">Instagram gallery</span>
-                </div>
-              </div>
-            </motion.div>
+        {/* Dot indicators */}
+        <div className="mt-6 flex items-center justify-center gap-2">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === activeIndex ? "w-6 bg-[#FF2E2E]" : "w-1.5 bg-white/20 hover:bg-white/40"
+              }`}
+            />
           ))}
         </div>
 
         <AnimatedSection delay={0.4}>
-          <div className="mt-5 flex flex-col items-center justify-center gap-3 text-center sm:mt-6">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 text-center">
             <p className="text-xs tracking-wide text-gray-600">
               Updated with real Instagram photo posts from FitElite Chennai
             </p>

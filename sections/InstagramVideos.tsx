@@ -1,7 +1,7 @@
 "use client";
 
-import { Instagram, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
+import { Instagram, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useCallback } from "react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const reels = [
@@ -37,34 +37,18 @@ const reels = [
   },
 ] as const;
 
-function ReelCard({
-  reel,
-  index,
-}: {
-  reel: (typeof reels)[number];
-  index: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-      className="group relative aspect-[9/16] rounded-2xl overflow-hidden bg-[#111] border border-white/8 hover:border-[#FF2E2E]/30 transition-all duration-300"
-    >
-      <iframe
-        src={reel.embedUrl}
-        title={reel.caption}
-        className="w-full h-full"
-        allowFullScreen
-        scrolling="no"
-        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-      />
-    </motion.div>
-  );
-}
+const navBtn =
+  "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 text-white transition-all duration-200 hover:border-[#FF2E2E]/50 hover:bg-[#FF2E2E]/10 hover:text-[#FF2E2E] disabled:cursor-not-allowed disabled:opacity-30";
 
 export default function InstagramVideos() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const prev = useCallback(() => setActiveIndex((i) => Math.max(0, i - 1)), []);
+  const next = useCallback(
+    () => setActiveIndex((i) => Math.min(reels.length - 1, i + 1)),
+    []
+  );
+
   return (
     <section id="instagram" className="bg-[#0B0B0B] px-4 py-12 sm:px-6 sm:py-24 lg:py-28">
       <div className="container mx-auto max-w-7xl">
@@ -81,7 +65,7 @@ export default function InstagramVideos() {
                 </span>
               </h2>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-gray-500 sm:text-base">
-                Real workouts. Real members. Real results - straight from our latest Instagram posts.
+                Real workouts. Real members. Real results — straight from our latest Instagram posts.
               </p>
             </div>
 
@@ -95,22 +79,56 @@ export default function InstagramVideos() {
                 <Instagram size={13} className="text-white" />
               </div>
               Follow on Instagram
-              <ExternalLink
-                size={12}
-                className="text-gray-600 group-hover:text-gray-400 transition-colors"
-              />
+              <ExternalLink size={12} className="text-gray-600 transition-colors group-hover:text-gray-400" />
             </a>
           </div>
         </AnimatedSection>
 
-        <div className="-mx-4 overflow-x-auto px-4 no-scrollbar snap-x snap-mandatory sm:-mx-6 sm:px-6">
-          <div className="flex gap-4">
-            {reels.map((reel, index) => (
-              <div key={reel.id} className="min-w-[82vw] max-w-[22rem] snap-center sm:min-w-[22rem] lg:min-w-[20rem] xl:min-w-[22rem]">
-                <ReelCard reel={reel} index={index} />
-              </div>
-            ))}
+        {/* Carousel — buttons sit left & right, vertically centered on the card */}
+        <div className="flex items-center gap-3 sm:gap-5">
+          {/* Left button */}
+          <button onClick={prev} disabled={activeIndex === 0} className={navBtn}>
+            <ChevronLeft size={20} />
+          </button>
+
+          {/* Single card — centered, 1 at a time */}
+          <div className="min-w-0 flex-1 overflow-hidden rounded-2xl">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+            >
+              {reels.map((reel) => (
+                <div key={reel.id} className="aspect-[9/16] w-full shrink-0">
+                  <iframe
+                    src={reel.embedUrl}
+                    title={reel.caption}
+                    className="h-full w-full"
+                    allowFullScreen
+                    scrolling="no"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* Right button */}
+          <button onClick={next} disabled={activeIndex === reels.length - 1} className={navBtn}>
+            <ChevronRight size={20} />
+          </button>
+        </div>
+
+        {/* Dot indicators */}
+        <div className="mt-6 flex items-center justify-center gap-2">
+          {reels.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === activeIndex ? "w-6 bg-[#FF2E2E]" : "w-1.5 bg-white/20 hover:bg-white/40"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
